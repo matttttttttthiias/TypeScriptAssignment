@@ -11,13 +11,15 @@ for(let liTag of myNodelist){
   liTag.appendChild(span);
 }
 
+function addXIconToTodos(){
 // Click on a close button to hide the current list item
 const closeBtn = document.querySelectorAll<HTMLSpanElement>(".close");
 
-for(let singleBtn of closeBtn){
-  singleBtn.onclick = function(e) {
-    const listElement = (e.target as HTMLSpanElement).parentElement;
-    listElement!.style.display = "none";
+  for(let singleBtn of closeBtn){
+    singleBtn.onclick = function(e) {
+      const listElement = (e.target as HTMLSpanElement).parentElement;
+      listElement!.style.display = "none";
+    }
   }
 }
 
@@ -35,20 +37,14 @@ function newElement() {
   if (inputValue === '') {
     alert("You must write something!");
   } else {
-    document.getElementById("myUL").appendChild(li);
+    todoList.appendChild(li);
   }
-  document.getElementById("myInput").value = "";
+  todoInput.value = "";
 
   const span = document.createElement("SPAN");
-  const txt = document.createTextNode("\u00D7");
   span.className = "close";
-  span.appendChild(txt);
-  li.appendChild(span);
+  span.innerText = ("\u00D7"); // represents the x
+  li.appendChild(span); // adds the x to the todo-item
 
-  for (i = 0; i < closeBtn.length; i++) {
-    closeBtn[i].onclick = function() {
-      const div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
+  addXIconToTodos();
 }
