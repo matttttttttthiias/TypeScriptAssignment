@@ -1,24 +1,54 @@
-//THIS IS THE ENTRY FILE - WRITE YOUR MAIN LOGIC HERE!
+const todoInput = document.getElementById("myInput") as HTMLInputElement;
+const todoList = document.getElementById("myUL") as HTMLUListElement;
+// Create a "close" button and append it to each list item
+const myNodelist = document.getElementsByTagName("LI");
 
-import { helloWorld, Beispiel } from "./myModule";
-import { alertMe } from "./myOtherModule";
+for(let liTag of myNodelist){
+  const span = document.createElement("SPAN");
+  const txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  liTag.appendChild(span);
+}
 
-console.log(helloWorld);
-customElements.define("my-beispiel", Beispiel);
+// Click on a close button to hide the current list item
+const closeBtn = document.querySelectorAll<HTMLSpanElement>(".close");
 
-alertMe();
+for(let singleBtn of closeBtn){
+  singleBtn.onclick = function(e) {
+    const listElement = (e.target as HTMLSpanElement).parentElement;
+    listElement!.style.display = "none";
+  }
+}
 
-const myInputValue = document.querySelector<HTMLInputElement>("#myInput");
+const list = document.querySelectorAll<HTMLLIElement>('li')
+for(let listEl of list){
+  listEl.onclick = (ev)=>(ev.target as HTMLLIElement).classList.toggle('checked');
+}
 
-const myInputValueAlternate = document.querySelector(
-  "#myInput"
-) as HTMLInputElement;
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  const li = document.createElement("li");
+  const inputValue = todoInput.value;
+  li.innerText = todoInput.value;
 
-document
-  .querySelector<HTMLInputElement>("#myInput")
-  ?.addEventListener("focus", doSmth);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
 
-function doSmth(e: UIEvent) {
-  const val = e.target as HTMLInputElement;
-  console.log(e, val.value);
+  const span = document.createElement("SPAN");
+  const txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < closeBtn.length; i++) {
+    closeBtn[i].onclick = function() {
+      const div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
 }
