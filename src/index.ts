@@ -285,17 +285,21 @@ class TicTacToe {
       // Horizontal win
       (this.board[row][0] === this.currentPlayer &&
         this.board[row][1] === this.currentPlayer &&
-        this.board[row][2] === this.currentPlayer) ||
+        this.board[row][2] === this.currentPlayer &&
+        this.board[row][3] === this.currentPlayer) ||
       // Vertical win
       (this.board[0][col] === this.currentPlayer &&
         this.board[1][col] === this.currentPlayer &&
-        this.board[2][col] === this.currentPlayer) ||
+        this.board[2][col] === this.currentPlayer &&
+        this.board[3][col] === this.currentPlayer) ||
       // Diagonal win
       ((this.board[0][0] === this.currentPlayer &&
         this.board[1][1] === this.currentPlayer &&
-        this.board[2][2] === this.currentPlayer) ||
-        (this.board[2][0] === this.currentPlayer &&
-          this.board[1][1] === this.currentPlayer &&
+        this.board[2][2] === this.currentPlayer &&
+        this.board[3][3] === this.currentPlayer) ||
+        (this.board[3][0] === this.currentPlayer &&
+          this.board[2][1] === this.currentPlayer &&
+          this.board[1][2] === this.currentPlayer &&
           this.board[0][2] === this.currentPlayer))
     )
       return true
