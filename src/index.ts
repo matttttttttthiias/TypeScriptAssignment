@@ -263,7 +263,7 @@ class TicTacToe {
    * Create a new empty board
    * @return {Object[]} 3x3 multi-dimensional array of empty strings
    */
-  createBoard = (): Array<Array<string>> => [['', '', ''], ['', '', ''], ['', '', '']]
+  createBoard = (): Array<Array<string>> => [['', '', ''], ['', '', ''], ['', '', ''], ['', '', '']]
 
   /**
    * Restore the board to its original empty state
